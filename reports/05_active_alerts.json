@@ -1,9 +1,82 @@
 [
   {
     "state": "Yobe",
-    "forecast_month": "2024-11",
+    "forecast_month": "2024-12",
     "probability": 0.977,
     "prob_lower_90": 0.897,
+    "prob_upper_90": 0.99,
+    "risk_level": "CRITICAL",
+    "top_drivers": [
+      "Sustained high 3-month fatality momentum",
+      "Intense cross-border conflict spillover from adjacent states",
+      "Dry season Harmattan operational mobility window"
+    ],
+    "is_underreporting_risk": false,
+    "reliability_score": 0.548,
+    "coverage_caveat": "Standard reporting reliability (0.55). Forecast represents statistical recurrence risk.",
+    "trend": "INCREASING",
+    "alert_timestamp": "2026-10-19T10:06:45.089900"
+  },
+  {
+    "state": "Sokoto",
+    "forecast_month": "2024-12",
+    "probability": 0.976,
+    "prob_lower_90": 0.896,
+    "prob_upper_90": 0.99,
+    "risk_level": "CRITICAL",
+    "top_drivers": [
+      "Sustained high 3-month fatality momentum",
+      "Intense cross-border conflict spillover from adjacent states",
+      "Dry season Harmattan operational mobility window"
+    ],
+    "is_underreporting_risk": false,
+    "reliability_score": 0.548,
+    "coverage_caveat": "Standard reporting reliability (0.55). Forecast represents statistical recurrence risk.",
+    "trend": "INCREASING",
+    "alert_timestamp": "2026-10-19T10:06:45.089900"
+  },
+  {
+    "state": "Zamfara",
+    "forecast_month": "2024-12",
+    "probability": 0.976,
+    "prob_lower_90": 0.896,
+    "prob_upper_90": 0.99,
+    "risk_level": "CRITICAL",
+    "top_drivers": [
+      "Sustained high 3-month fatality momentum",
+      "Intense cross-border conflict spillover from adjacent states",
+      "Dry season Harmattan operational mobility window",
+      "Inter-source reporting disagreement (ACLED vs UCDP)"
+    ],
+    "is_underreporting_risk": false,
+    "reliability_score": 0.775,
+    "coverage_caveat": "Standard reporting reliability (0.77). Forecast represents statistical recurrence risk.",
+    "trend": "INCREASING",
+    "alert_timestamp": "2026-10-19T10:06:45.089900"
+  },
+  {
+    "state": "Kaduna",
+    "forecast_month": "2024-12",
+    "probability": 0.971,
+    "prob_lower_90": 0.891,
+    "prob_upper_90": 0.99,
+    "risk_level": "CRITICAL",
+    "top_drivers": [
+      "Sustained high 3-month fatality momentum",
+      "Intense cross-border conflict spillover from adjacent states",
+      "Dry season Harmattan operational mobility window"
+    ],
+    "is_underreporting_risk": false,
+    "reliability_score": 0.58,
+    "coverage_caveat": "Standard reporting reliability (0.58). Forecast represents statistical recurrence risk.",
+    "trend": "INCREASING",
+    "alert_timestamp": "2026-10-19T10:06:45.089900"
+  },
+  {
+    "state": "Katsina",
+    "forecast_month": "2024-12",
+    "probability": 0.966,
+    "prob_lower_90": 0.886,
     "prob_upper_90": 0.99,
     "risk_level": "CRITICAL",
     "top_drivers": [
@@ -15,68 +88,13 @@
     "reliability_score": 0.775,
     "coverage_caveat": "Standard reporting reliability (0.77). Forecast represents statistical recurrence risk.",
     "trend": "INCREASING",
-    "alert_timestamp": "2026-10-19T08:41:09.829705"
-  },
-  {
-    "state": "Katsina",
-    "forecast_month": "2024-11",
-    "probability": 0.975,
-    "prob_lower_90": 0.895,
-    "prob_upper_90": 0.99,
-    "risk_level": "CRITICAL",
-    "top_drivers": [
-      "Sustained high 3-month fatality momentum",
-      "Intense cross-border conflict spillover from adjacent states",
-      "Dry season Harmattan operational mobility window"
-    ],
-    "is_underreporting_risk": false,
-    "reliability_score": 0.671,
-    "coverage_caveat": "Standard reporting reliability (0.67). Forecast represents statistical recurrence risk.",
-    "trend": "INCREASING",
-    "alert_timestamp": "2026-10-19T08:41:09.829705"
-  },
-  {
-    "state": "Zamfara",
-    "forecast_month": "2024-11",
-    "probability": 0.975,
-    "prob_lower_90": 0.895,
-    "prob_upper_90": 0.99,
-    "risk_level": "CRITICAL",
-    "top_drivers": [
-      "Sustained high 3-month fatality momentum",
-      "Intense cross-border conflict spillover from adjacent states",
-      "Dry season Harmattan operational mobility window",
-      "Inter-source reporting disagreement (ACLED vs UCDP)"
-    ],
-    "is_underreporting_risk": false,
-    "reliability_score": 0.559,
-    "coverage_caveat": "Standard reporting reliability (0.56). Forecast represents statistical recurrence risk.",
-    "trend": "INCREASING",
-    "alert_timestamp": "2026-10-19T08:41:09.829705"
-  },
-  {
-    "state": "Sokoto",
-    "forecast_month": "2024-11",
-    "probability": 0.974,
-    "prob_lower_90": 0.894,
-    "prob_upper_90": 0.99,
-    "risk_level": "CRITICAL",
-    "top_drivers": [
-      "Sustained high 3-month fatality momentum",
-      "Intense cross-border conflict spillover from adjacent states",
-      "Dry season Harmattan operational mobility window"
-    ],
-    "is_underreporting_risk": false,
-    "reliability_score": 0.556,
-    "coverage_caveat": "Standard reporting reliability (0.56). Forecast represents statistical recurrence risk.",
-    "trend": "INCREASING",
-    "alert_timestamp": "2026-10-19T08:41:09.829705"
+    "alert_timestamp": "2026-10-19T10:06:45.089900"
   },
   {
     "state": "Borno",
-    "forecast_month": "2024-11",
-    "probability": 0.968,
-    "prob_lower_90": 0.888,
+    "forecast_month": "2024-12",
+    "probability": 0.957,
+    "prob_lower_90": 0.877,
     "prob_upper_90": 0.99,
     "risk_level": "CRITICAL",
     "top_drivers": [
@@ -85,27 +103,9 @@
       "Dry season Harmattan operational mobility window"
     ],
     "is_underreporting_risk": false,
-    "reliability_score": 0.671,
-    "coverage_caveat": "Standard reporting reliability (0.67). Forecast represents statistical recurrence risk.",
+    "reliability_score": 0.775,
+    "coverage_caveat": "Standard reporting reliability (0.77). Forecast represents statistical recurrence risk.",
     "trend": "INCREASING",
-    "alert_timestamp": "2026-10-19T08:41:09.829705"
-  },
-  {
-    "state": "Kaduna",
-    "forecast_month": "2024-11",
-    "probability": 0.961,
-    "prob_lower_90": 0.881,
-    "prob_upper_90": 0.99,
-    "risk_level": "CRITICAL",
-    "top_drivers": [
-      "Sustained high 3-month fatality momentum",
-      "Intense cross-border conflict spillover from adjacent states",
-      "Dry season Harmattan operational mobility window"
-    ],
-    "is_underreporting_risk": false,
-    "reliability_score": 0.671,
-    "coverage_caveat": "Standard reporting reliability (0.67). Forecast represents statistical recurrence risk.",
-    "trend": "INCREASING",
-    "alert_timestamp": "2026-10-19T08:41:09.829705"
+    "alert_timestamp": "2026-10-19T10:06:45.089900"
   }
 ]
