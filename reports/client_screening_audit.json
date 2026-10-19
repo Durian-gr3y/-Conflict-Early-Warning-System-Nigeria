@@ -124,5 +124,47 @@
     "do_no_harm_checklist_passed": true,
     "timestamp": "2026-10-19T08:51:22.028630",
     "reviewed_by": "Platform Ethics Officer"
+  },
+  {
+    "client_id": "GOV-012",
+    "client_organization": "State Emergency Management Agency",
+    "client_type": "government",
+    "use_case_statement": "Pre-positioning non-food relief items and flood-conflict displacement shelters.",
+    "approved": true,
+    "rejection_reasons": [],
+    "prohibited_keywords_detected": [],
+    "do_no_harm_checklist_passed": true,
+    "timestamp": "2026-10-19T09:21:40.522513",
+    "reviewed_by": "Platform Ethics Officer"
+  },
+  {
+    "client_id": "NGO-001",
+    "client_organization": "Doctors Without Borders / MSF",
+    "client_type": "humanitarian",
+    "use_case_statement": "Planning nutritional convoy access corridors and civilian displacement camp assistance.",
+    "approved": true,
+    "rejection_reasons": [],
+    "prohibited_keywords_detected": [],
+    "do_no_harm_checklist_passed": true,
+    "timestamp": "2026-10-19T09:21:40.525381",
+    "reviewed_by": "Platform Ethics Officer"
+  },
+  {
+    "client_id": "DEF-999",
+    "client_organization": "Private Military Security Contractor",
+    "client_type": "corporate",
+    "use_case_statement": "Identifying enemy positions to coordinate kinetic airstrike and offensive patrol targeting.",
+    "approved": false,
+    "rejection_reasons": [
+      "Prohibited operational keywords detected: ['kinetic', 'airstrike']",
+      "Client failed to confirm prohibition on kinetic (lethal) operations."
+    ],
+    "prohibited_keywords_detected": [
+      "kinetic",
+      "airstrike"
+    ],
+    "do_no_harm_checklist_passed": true,
+    "timestamp": "2026-10-19T09:21:40.537340",
+    "reviewed_by": "Platform Ethics Officer"
   }
 ]
