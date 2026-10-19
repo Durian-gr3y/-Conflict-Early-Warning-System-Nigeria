@@ -15,7 +15,7 @@
     "reliability_score": 0.548,
     "coverage_caveat": "Standard reporting reliability (0.55). Forecast represents statistical recurrence risk.",
     "trend": "INCREASING",
-    "alert_timestamp": "2026-10-19T10:06:45.089900"
+    "alert_timestamp": "2026-10-19T09:11:33.093511"
   },
   {
     "state": "Sokoto",
@@ -33,7 +33,7 @@
     "reliability_score": 0.548,
     "coverage_caveat": "Standard reporting reliability (0.55). Forecast represents statistical recurrence risk.",
     "trend": "INCREASING",
-    "alert_timestamp": "2026-10-19T10:06:45.089900"
+    "alert_timestamp": "2026-10-19T09:11:33.093511"
   },
   {
     "state": "Zamfara",
@@ -52,7 +52,7 @@
     "reliability_score": 0.775,
     "coverage_caveat": "Standard reporting reliability (0.77). Forecast represents statistical recurrence risk.",
     "trend": "INCREASING",
-    "alert_timestamp": "2026-10-19T10:06:45.089900"
+    "alert_timestamp": "2026-10-19T09:11:33.093511"
   },
   {
     "state": "Kaduna",
@@ -70,7 +70,7 @@
     "reliability_score": 0.58,
     "coverage_caveat": "Standard reporting reliability (0.58). Forecast represents statistical recurrence risk.",
     "trend": "INCREASING",
-    "alert_timestamp": "2026-10-19T10:06:45.089900"
+    "alert_timestamp": "2026-10-19T09:11:33.093511"
   },
   {
     "state": "Katsina",
@@ -88,7 +88,7 @@
     "reliability_score": 0.775,
     "coverage_caveat": "Standard reporting reliability (0.77). Forecast represents statistical recurrence risk.",
     "trend": "INCREASING",
-    "alert_timestamp": "2026-10-19T10:06:45.089900"
+    "alert_timestamp": "2026-10-19T09:11:33.093511"
   },
   {
     "state": "Borno",
@@ -106,6 +106,6 @@
     "reliability_score": 0.775,
     "coverage_caveat": "Standard reporting reliability (0.77). Forecast represents statistical recurrence risk.",
     "trend": "INCREASING",
-    "alert_timestamp": "2026-10-19T10:06:45.089900"
+    "alert_timestamp": "2026-10-19T09:11:33.093511"
   }
 ]
