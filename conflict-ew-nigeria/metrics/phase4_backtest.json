@@ -1,0 +1,120 @@
+{
+  "phase": 4,
+  "run_date": "2026-10-19T00:33:39.245017",
+  "backtest_protocol": {
+    "type": "expanding_window",
+    "min_train_months": 36,
+    "burn_in_months": 12,
+    "folds": 83,
+    "total_test_samples": 1635,
+    "target": "P(fatal_event_{T+1} >= 1)"
+  },
+  "metrics": {
+    "folds_evaluated": 83,
+    "total_predictions": 1635,
+    "target_prevalence": 0.5792,
+    "models": {
+      "climatology": {
+        "brier_score": 0.2442
+      },
+      "M0_naive": {
+        "brier_score": 0.3443,
+        "brier_skill_score": -0.4103,
+        "auc_roc": 0.6471,
+        "ece": 0.3443,
+        "decomposition": {
+          "brier": 0.3443,
+          "reliability": 0.1217,
+          "resolution": 0.0211,
+          "uncertainty": 0.2437
+        }
+      },
+      "M1_negbin_glm": {
+        "brier_score": 0.1827,
+        "brier_skill_score": 0.2519,
+        "auc_roc": 0.7511,
+        "ece": 0.0662,
+        "decomposition": {
+          "brier": 0.1827,
+          "reliability": 0.0071,
+          "resolution": 0.0696,
+          "uncertainty": 0.2437
+        },
+        "dm_test_vs_m0": {
+          "mean_diff": 0.162203,
+          "dm_stat": 17.9684,
+          "p_value": 0.0,
+          "significant": true,
+          "superior_model": "model_2",
+          "degrees_of_freedom": 82
+        }
+      },
+      "M2_lightgbm": {
+        "brier_score": 0.1813,
+        "brier_skill_score": 0.2575,
+        "auc_roc": 0.7414,
+        "ece": 0.0556,
+        "decomposition": {
+          "brier": 0.1813,
+          "reliability": 0.0077,
+          "resolution": 0.0709,
+          "uncertainty": 0.2437
+        },
+        "dm_test_vs_m0": {
+          "mean_diff": 0.163378,
+          "dm_stat": 20.857,
+          "p_value": 0.0,
+          "significant": true,
+          "superior_model": "model_2",
+          "degrees_of_freedom": 82
+        },
+        "dm_test_vs_m1": {
+          "mean_diff": 0.001175,
+          "dm_stat": 0.3469,
+          "p_value": 0.72956,
+          "significant": false,
+          "superior_model": "no_difference",
+          "degrees_of_freedom": 82
+        }
+      }
+    },
+    "subgroups": {
+      "northwest_pilot": {
+        "n_samples": 328,
+        "prevalence": 0.9817073170731707,
+        "brier_clim": 0.1927,
+        "brier_m0": 0.0366,
+        "brier_m1": 0.0264,
+        "brier_m2": 0.0178,
+        "auc_m1": 0.4322,
+        "auc_m2": 0.5675
+      },
+      "coverage_bias": {
+        "high_risk_cells": {
+          "n_samples": 409,
+          "brier_m0": 0.4694,
+          "brier_m1": 0.233,
+          "brier_m2": 0.242
+        },
+        "normal_cells": {
+          "n_samples": 1226,
+          "brier_m0": 0.3026,
+          "brier_m1": 0.1659,
+          "brier_m2": 0.161
+        }
+      }
+    }
+  },
+  "models_evaluated": [
+    "climatology",
+    "M0_naive",
+    "M1_negbin_glm",
+    "M2_lightgbm"
+  ],
+  "acceptance_criteria": {
+    "m1_beats_m0_statistically": true,
+    "m2_beats_m0_statistically": true,
+    "calibration_ece_under_0_05": false,
+    "brier_score_under_climatology": true
+  }
+}

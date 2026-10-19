@@ -1,0 +1,44 @@
+{
+  "phase": 3,
+  "run_date": "2026-10-19T00:02:07.468362",
+  "feature_matrix": {
+    "rows": 2381,
+    "columns": 61,
+    "predictor_cols": 51,
+    "stub_cols": 5
+  },
+  "leakage_check": {
+    "passed": true,
+    "errors": []
+  },
+  "autocorrelation": {
+    "fatal_event_lag1": 0.3125,
+    "fatal_event_lag3": 0.2797
+  },
+  "coverage_bias": {
+    "high_risk_cells_total": 440,
+    "states_at_risk": [
+      "Niger",
+      "Kano",
+      "Oyo",
+      "Ogun",
+      "Benue",
+      "Bayelsa",
+      "Jigawa",
+      "Kwara",
+      "Kebbi",
+      "Rivers",
+      "Delta",
+      "Plateau",
+      "Adamawa",
+      "Lagos",
+      "Fct",
+      "Nasarawa",
+      "Kaduna",
+      "Zamfara",
+      "Yobe"
+    ],
+    "top_risk_state": "Niger",
+    "top_risk_pct": 33.6
+  }
+}

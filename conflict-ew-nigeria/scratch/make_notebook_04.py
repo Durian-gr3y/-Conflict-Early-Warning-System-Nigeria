@@ -1,0 +1,205 @@
+import json
+import pathlib
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+nb_path = ROOT / "notebooks" / "04_modelling.ipynb"
+
+cells = [
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": [
+            "# Conflict Early Warning Nigeria — Phase 4\n",
+            "## Predictive Modelling, Expanding-Window Backtesting & Calibration\n",
+            "\n",
+            "**Goal:** Build, evaluate, and statistically validate predictive models for conflict risk across Nigeria's 36 states and FCT, with a pilot focus on the Northwest (Zamfara, Katsina, Sokoto, Kaduna).\n",
+            "\n",
+            "**Target Variable:**  \n",
+            "> $P(\\text{fatal\\_event}_{T+1} \\ge 1 \\mid \\text{State } s)$ — probability of at least one fatal conflict event in month $T+1$.\n",
+            "\n",
+            "**Model Ladder:**\n",
+            "1. **Baseline / Climatology:** Constant empirical base rate prevalence\n",
+            "2. **M0 — Naive Persistence:** Last observed month = forecast ($y_T = \\hat{p}_{T+1}$)\n",
+            "3. **M1 — Negative-Binomial GLM:** Count regression on fatalities $\\to$ zero-event probability exceedance\n",
+            "4. **M2 — LightGBM:** Gradient-boosted decision trees capturing non-linear interactions & spatial spillovers\n",
+            "\n",
+            "**Evaluation Protocol:**\n",
+            "- Strict expanding-window backtest (83 monthly folds, 2018–2024)\n",
+            "- Zero future leakage: model at fold $T$ trains strictly on data prior to $T$\n",
+            "- Statistical validation via Diebold-Mariano test (1995 with HLN 1997 correction)\n",
+            "- Calibration assessment: Reliability diagrams and Expected Calibration Error (ECE)\n"
+        ]
+    },
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": ["### 1 · Imports and Setup"]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "import pathlib, sys, json, warnings\n",
+            "from datetime import datetime\n",
+            "import numpy as np\n",
+            "import pandas as pd\n",
+            "import matplotlib.pyplot as plt\n",
+            "import matplotlib.ticker as mtick\n",
+            "import seaborn as sns\n",
+            "from sklearn.metrics import roc_curve, auc, brier_score_loss\n",
+            "from sklearn.calibration import calibration_curve\n",
+            "\n",
+            "warnings.filterwarnings('ignore')\n",
+            "ROOT = pathlib.Path('..').resolve()\n",
+            "sys.path.insert(0, str(ROOT))\n",
+            "\n",
+            "from src.models.baseline import NaiveM0, ClimatologicalBaseline\n",
+            "from src.models.glm import NegativeBinomialM1, DEFAULT_GLM_FEATURES\n",
+            "from src.models.gbm import LightGBMM2, DEFAULT_GBM_FEATURES\n",
+            "from src.models.backtest import ExpandingWindowBacktester\n",
+            "from src.models.evaluation import (\n",
+            "    brier_score, brier_skill_score, expected_calibration_error,\n",
+            "    brier_decomposition, diebold_mariano_test\n",
+            ")\n",
+            "\n",
+            "FEAT_PATH = ROOT / 'data' / 'features' / 'feature_matrix.parquet'\n",
+            "print('Setup complete. Ready to run Phase 4 models.')\n"
+        ]
+    },
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": ["### 2 · Load Feature Matrix"]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "df = pd.read_parquet(FEAT_PATH)\n",
+            "df = df.sort_values(['admin1', 'month']).reset_index(drop=True)\n",
+            "print(f'Feature matrix loaded: {df.shape[0]:,} rows x {df.shape[1]} columns')\n",
+            "print(f'Date range: {df[\"month\"].min()} to {df[\"month\"].max()}')\n",
+            "print(f'States: {df[\"admin1\"].nunique()}')\n"
+        ]
+    },
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": [
+            "### 3 · Execute Expanding-Window Backtesting\n",
+            "We evaluate 83 expanding window folds starting after a 36-month burn-in period."
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "backtester = ExpandingWindowBacktester(\n",
+            "    min_train_months=36,\n",
+            "    burn_in_months=12,\n",
+            "    glm_features=DEFAULT_GLM_FEATURES,\n",
+            "    gbm_features=DEFAULT_GBM_FEATURES,\n",
+            ")\n",
+            "pred_df = backtester.run(df)\n",
+            "metrics = backtester.metrics_\n",
+            "print(f'Backtest completed across {metrics[\"folds_evaluated\"]} folds ({len(pred_df)} test predictions).')\n"
+        ]
+    },
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": ["### 4 · Benchmark Comparison and Statistical Tests"]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "m = metrics['models']\n",
+            "summary_table = pd.DataFrame([\n",
+            "    {'Model': 'Climatology', 'Brier': m['climatology']['brier_score'], 'BSS': 0.0, 'AUC': 0.500, 'ECE': 'N/A'},\n",
+            "    {'Model': 'M0 Naive', 'Brier': m['M0_naive']['brier_score'], 'BSS': m['M0_naive']['brier_skill_score'], 'AUC': m['M0_naive']['auc_roc'], 'ECE': m['M0_naive']['ece']},\n",
+            "    {'Model': 'M1 NegBin GLM', 'Brier': m['M1_negbin_glm']['brier_score'], 'BSS': m['M1_negbin_glm']['brier_skill_score'], 'AUC': m['M1_negbin_glm']['auc_roc'], 'ECE': m['M1_negbin_glm']['ece']},\n",
+            "    {'Model': 'M2 LightGBM', 'Brier': m['M2_lightgbm']['brier_score'], 'BSS': m['M2_lightgbm']['brier_skill_score'], 'AUC': m['M2_lightgbm']['auc_roc'], 'ECE': m['M2_lightgbm']['ece']},\n",
+            "])\n",
+            "display(summary_table)\n",
+            "\n",
+            "dm_m1 = m['M1_negbin_glm']['dm_test_vs_m0']\n",
+            "dm_m2 = m['M2_lightgbm']['dm_test_vs_m0']\n",
+            "print(f\"Diebold-Mariano M1 vs M0: DM={dm_m1['dm_stat']:+.2f}, p={dm_m1['p_value']:.4e} (Significant: {dm_m1['significant']})\")\n",
+            "print(f\"Diebold-Mariano M2 vs M0: DM={dm_m2['dm_stat']:+.2f}, p={dm_m2['p_value']:.4e} (Significant: {dm_m2['significant']})\")\n"
+        ]
+    },
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": ["### 5 · Reliability and Calibration Diagnostics"]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "fig, ax = plt.subplots(figsize=(7, 6))\n",
+            "ax.plot([0, 1], [0, 1], 'k--', alpha=0.7, label='Perfect Calibration')\n",
+            "for mod_name, col, mark in [('p_m0', '#e74c3c', 's'), ('p_m1', '#2980b9', 'o'), ('p_m2', '#27ae60', '^')]:\n",
+            "    f_pos, m_pred = calibration_curve(pred_df['actual'], pred_df[mod_name], n_bins=10, strategy='uniform')\n",
+            "    ax.plot(m_pred, f_pos, marker=mark, label=mod_name, color=col)\n",
+            "ax.set_xlabel('Predicted Probability')\n",
+            "ax.set_ylabel('Observed Event Rate')\n",
+            "ax.set_title('Reliability Diagram (Calibration Curves)')\n",
+            "ax.legend()\n",
+            "ax.grid(True, alpha=0.4)\n",
+            "plt.show()\n"
+        ]
+    },
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": ["### 6 · Subgroup Analysis: Northwest Pilot States"]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "nw = metrics['subgroups']['northwest_pilot']\n",
+            "print(f\"Northwest Pilot States (Zamfara, Katsina, Sokoto, Kaduna):\")\n",
+            "print(f\"  Prevalence : {nw['prevalence']:.1%}\")\n",
+            "print(f\"  M0 Brier   : {nw['brier_m0']:.4f}\")\n",
+            "print(f\"  M1 Brier   : {nw['brier_m1']:.4f}\")\n",
+            "print(f\"  M2 Brier   : {nw['brier_m2']:.4f}\")\n"
+        ]
+    }
+]
+
+nb = {
+    "cells": cells,
+    "metadata": {
+        "kernelspec": {
+            "display_name": "Python 3",
+            "language": "python",
+            "name": "python3"
+        },
+        "language_info": {
+            "name": "python",
+            "version": "3.13"
+        }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 5
+}
+
+with open(nb_path, "w", encoding="utf-8") as f:
+    json.dump(nb, f, indent=1)
+
+print(f"Created notebook: {nb_path}")

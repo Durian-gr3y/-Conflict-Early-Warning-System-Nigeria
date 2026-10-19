@@ -1,0 +1,52 @@
+{
+  "phase": 1,
+  "run_date": "2026-10-18T23:38:45.247650",
+  "demo_mode": true,
+  "data_rows_raw": 7573,
+  "monthly_panel_rows": 2381,
+  "states": 22,
+  "date_range": {
+    "start": "2015-01",
+    "end": "2024-12"
+  },
+  "target_prevalence": 0.5633743111487919,
+  "low_coverage_fraction": 0.6220075598488031,
+  "naive_baseline_M0": {
+    "brier_score": 0.3383,
+    "brier_skill_score": -0.3752,
+    "auc_roc": 0.6563,
+    "expanding_window_brier": 0.3331
+  },
+  "coverage_flags": {
+    "flag1_silent_gt30pct": [
+      "Nasarawa",
+      "Kebbi",
+      "Adamawa",
+      "Oyo",
+      "Rivers",
+      "Fct",
+      "Benue",
+      "Niger",
+      "Kano",
+      "Ogun",
+      "Lagos",
+      "Delta",
+      "Kwara",
+      "Jigawa",
+      "Bayelsa",
+      "Plateau",
+      "Sokoto",
+      "Zamfara",
+      "Kaduna",
+      "Katsina",
+      "Borno"
+    ],
+    "flag2_zero_streak_near_hotspot": [],
+    "flag3_pilot_low_coverage_months": [
+      "Kaduna",
+      "Katsina",
+      "Sokoto",
+      "Zamfara"
+    ]
+  }
+}

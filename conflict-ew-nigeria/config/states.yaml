@@ -1,0 +1,380 @@
+# config/states.yaml
+# Complete Geographic Registry of Nigeria: 36 States + Federal Capital Territory (FCT)
+# Enables 100% config-driven scaling: Add, toggle, or tune states without altering Python code.
+
+states:
+  # ── Northwest (Pilot Theatre) ────────────────────────────────────────────────
+  Zamfara:
+    code: NG-ZA
+    zone: Northwest
+    capital: Gusau
+    lat: 12.16
+    lon: 6.66
+    enabled: true
+    is_pilot: true
+    neighbors: [Sokoto, Katsina, Kaduna, Niger, Kebbi]
+
+  Katsina:
+    code: NG-KT
+    zone: Northwest
+    capital: Katsina
+    lat: 12.98
+    lon: 7.60
+    enabled: true
+    is_pilot: true
+    neighbors: [Zamfara, Kaduna, Kano, Jigawa]
+
+  Sokoto:
+    code: NG-SO
+    zone: Northwest
+    capital: Sokoto
+    lat: 13.06
+    lon: 5.24
+    enabled: true
+    is_pilot: true
+    neighbors: [Zamfara, Kebbi]
+
+  Kaduna:
+    code: NG-KD
+    zone: Northwest
+    capital: Kaduna
+    lat: 10.52
+    lon: 7.44
+    enabled: true
+    is_pilot: true
+    neighbors: [Zamfara, Katsina, Kano, Bauchi, Plateau, Nasarawa, FCT, Niger]
+
+  Kano:
+    code: NG-KN
+    zone: Northwest
+    capital: Kano
+    lat: 11.99
+    lon: 8.52
+    enabled: true
+    is_pilot: false
+    neighbors: [Katsina, Jigawa, Bauchi, Kaduna]
+
+  Jigawa:
+    code: NG-JI
+    zone: Northwest
+    capital: Dutse
+    lat: 12.23
+    lon: 9.56
+    enabled: true
+    is_pilot: false
+    neighbors: [Katsina, Kano, Bauchi, Yobe]
+
+  Kebbi:
+    code: NG-KE
+    zone: Northwest
+    capital: Birnin Kebbi
+    lat: 12.45
+    lon: 4.20
+    enabled: true
+    is_pilot: false
+    neighbors: [Sokoto, Zamfara, Niger]
+
+  # ── Northeast ────────────────────────────────────────────────────────────────
+  Borno:
+    code: NG-BO
+    zone: Northeast
+    capital: Maiduguri
+    lat: 11.83
+    lon: 13.15
+    enabled: true
+    is_pilot: false
+    neighbors: [Yobe, Adamawa, Gombe]
+
+  Yobe:
+    code: NG-YO
+    zone: Northeast
+    capital: Damaturu
+    lat: 12.00
+    lon: 11.50
+    enabled: true
+    is_pilot: false
+    neighbors: [Borno, Jigawa, Bauchi, Gombe]
+
+  Adamawa:
+    code: NG-AD
+    zone: Northeast
+    capital: Yola
+    lat: 9.33
+    lon: 12.44
+    enabled: true
+    is_pilot: false
+    neighbors: [Borno, Gombe, Taraba]
+
+  Bauchi:
+    code: NG-BA
+    zone: Northeast
+    capital: Bauchi
+    lat: 10.31
+    lon: 9.84
+    enabled: true
+    is_pilot: false
+    neighbors: [Kano, Jigawa, Yobe, Gombe, Taraba, Plateau, Kaduna]
+
+  Gombe:
+    code: NG-GO
+    zone: Northeast
+    capital: Gombe
+    lat: 10.29
+    lon: 11.17
+    enabled: true
+    is_pilot: false
+    neighbors: [Yobe, Borno, Adamawa, Taraba, Bauchi]
+
+  Taraba:
+    code: NG-TR
+    zone: Northeast
+    capital: Jalingo
+    lat: 7.87
+    lon: 9.78
+    enabled: true
+    is_pilot: false
+    neighbors: [Bauchi, Gombe, Adamawa, Benue, Nasarawa, Plateau]
+
+  # ── North Central (Middle Belt) ──────────────────────────────────────────────
+  Niger:
+    code: NG-NI
+    zone: North Central
+    capital: Minna
+    lat: 10.00
+    lon: 5.60
+    enabled: true
+    is_pilot: false
+    neighbors: [Kebbi, Zamfara, Kaduna, FCT, Kogi, Kwara]
+
+  Plateau:
+    code: NG-PL
+    zone: North Central
+    capital: Jos
+    lat: 9.93
+    lon: 8.89
+    enabled: true
+    is_pilot: false
+    neighbors: [Kaduna, Bauchi, Taraba, Nasarawa]
+
+  Benue:
+    code: NG-BE
+    zone: North Central
+    capital: Makurdi
+    lat: 7.73
+    lon: 8.52
+    enabled: true
+    is_pilot: false
+    neighbors: [Nasarawa, Taraba, Cross River, Ebonyi, Enugu, Kogi]
+
+  Nasarawa:
+    code: NG-NA
+    zone: North Central
+    capital: Lafia
+    lat: 8.54
+    lon: 8.50
+    enabled: true
+    is_pilot: false
+    neighbors: [Kaduna, Plateau, Taraba, Benue, Kogi, FCT]
+
+  Kwara:
+    code: NG-KW
+    zone: North Central
+    capital: Ilorin
+    lat: 8.49
+    lon: 4.55
+    enabled: true
+    is_pilot: false
+    neighbors: [Niger, Kogi, Ekiti, Osun, Oyo]
+
+  Kogi:
+    code: NG-KO
+    zone: North Central
+    capital: Lokoja
+    lat: 7.80
+    lon: 6.74
+    enabled: true
+    is_pilot: false
+    neighbors: [Niger, FCT, Nasarawa, Benue, Enugu, Anambra, Edo, Ondo, Ekiti, Kwara]
+
+  FCT:
+    code: NG-FC
+    zone: North Central
+    capital: Abuja
+    lat: 9.07
+    lon: 7.40
+    enabled: true
+    is_pilot: false
+    neighbors: [Niger, Kaduna, Nasarawa, Kogi]
+
+  # ── Southwest ────────────────────────────────────────────────────────────────
+  Lagos:
+    code: NG-LA
+    zone: Southwest
+    capital: Ikeja
+    lat: 6.52
+    lon: 3.38
+    enabled: true
+    is_pilot: false
+    neighbors: [Ogun]
+
+  Ogun:
+    code: NG-OG
+    zone: Southwest
+    capital: Abeokuta
+    lat: 7.00
+    lon: 3.35
+    enabled: true
+    is_pilot: false
+    neighbors: [Lagos, Oyo, Osun, Ondo]
+
+  Oyo:
+    code: NG-OY
+    zone: Southwest
+    capital: Ibadan
+    lat: 7.85
+    lon: 3.93
+    enabled: true
+    is_pilot: false
+    neighbors: [Ogun, Osun, Kwara]
+
+  Osun:
+    code: NG-OS
+    zone: Southwest
+    capital: Osogbo
+    lat: 7.78
+    lon: 4.56
+    enabled: true
+    is_pilot: false
+    neighbors: [Oyo, Kwara, Ekiti, Ondo, Ogun]
+
+  Ondo:
+    code: NG-ON
+    zone: Southwest
+    capital: Akure
+    lat: 7.25
+    lon: 5.20
+    enabled: true
+    is_pilot: false
+    neighbors: [Ogun, Osun, Ekiti, Kogi, Edo, Delta]
+
+  Ekiti:
+    code: NG-EK
+    zone: Southwest
+    capital: Ado Ekiti
+    lat: 7.62
+    lon: 5.22
+    enabled: true
+    is_pilot: false
+    neighbors: [Kwara, Kogi, Ondo, Osun]
+
+  # ── South South (Niger Delta) ────────────────────────────────────────────────
+  Rivers:
+    code: NG-RI
+    zone: South South
+    capital: Port Harcourt
+    lat: 4.81
+    lon: 7.01
+    enabled: true
+    is_pilot: false
+    neighbors: [Bayelsa, Delta, Imo, Abia, Akwa Ibom]
+
+  Delta:
+    code: NG-DE
+    zone: South South
+    capital: Asaba
+    lat: 5.50
+    lon: 5.80
+    enabled: true
+    is_pilot: false
+    neighbors: [Ondo, Edo, Anambra, Rivers, Bayelsa]
+
+  Bayelsa:
+    code: NG-BY
+    zone: South South
+    capital: Yenagoa
+    lat: 4.75
+    lon: 6.08
+    enabled: true
+    is_pilot: false
+    neighbors: [Delta, Rivers]
+
+  Akwa Ibom:
+    code: NG-AK
+    zone: South South
+    capital: Uyo
+    lat: 5.03
+    lon: 7.91
+    enabled: true
+    is_pilot: false
+    neighbors: [Rivers, Abia, Cross River]
+
+  Cross River:
+    code: NG-CR
+    zone: South South
+    capital: Calabar
+    lat: 5.87
+    lon: 8.60
+    enabled: true
+    is_pilot: false
+    neighbors: [Benue, Ebonyi, Abia, Akwa Ibom]
+
+  Edo:
+    code: NG-ED
+    zone: South South
+    capital: Benin City
+    lat: 6.34
+    lon: 5.63
+    enabled: true
+    is_pilot: false
+    neighbors: [Kogi, Ondo, Delta, Anambra]
+
+  # ── Southeast ────────────────────────────────────────────────────────────────
+  Anambra:
+    code: NG-AN
+    zone: Southeast
+    capital: Awka
+    lat: 6.22
+    lon: 7.07
+    enabled: true
+    is_pilot: false
+    neighbors: [Kogi, Enugu, Imo, Delta, Edo]
+
+  Enugu:
+    code: NG-EN
+    zone: Southeast
+    capital: Enugu
+    lat: 6.45
+    lon: 7.51
+    enabled: true
+    is_pilot: false
+    neighbors: [Benue, Kogi, Anambra, Abia, Ebonyi]
+
+  Ebonyi:
+    code: NG-EB
+    zone: Southeast
+    capital: Abakaliki
+    lat: 6.26
+    lon: 8.01
+    enabled: true
+    is_pilot: false
+    neighbors: [Benue, Enugu, Cross River, Abia]
+
+  Imo:
+    code: NG-IM
+    zone: Southeast
+    capital: Owerri
+    lat: 5.48
+    lon: 7.03
+    enabled: true
+    is_pilot: false
+    neighbors: [Anambra, Abia, Rivers]
+
+  Abia:
+    code: NG-AB
+    zone: Southeast
+    capital: Umuahia
+    lat: 5.53
+    lon: 7.49
+    enabled: true
+    is_pilot: false
+    neighbors: [Enugu, Ebonyi, Cross River, Akwa Ibom, Rivers, Imo]

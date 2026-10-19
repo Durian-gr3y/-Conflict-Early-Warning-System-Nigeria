@@ -1,0 +1,77 @@
+sources:
+
+  acled_weekly_agg:
+    description: "ACLED Nigeria weekly aggregated CSV (state-level)"
+    access: manual_csv
+    path: data/raw/acled_nigeria_weekly_agg.csv
+    update_frequency: weekly
+    license: "CC BY-NC-SA 4.0"
+    geo_precision: admin1_centroid
+    failure_modes:
+      - Manual export forgotten
+      - Column schema drift between downloads
+    notes: "Upgrade to REST API once event-level key is granted"
+
+  acled_api:
+    description: "ACLED REST API — event-level, Nigeria"
+    access: rest_api
+    base_url: "https://api.acleddata.com/acled/read"
+    key_env_var: ACLED_API_KEY
+    update_frequency: weekly
+    license: "CC BY-NC-SA 4.0"
+    geo_precision: event_point
+    failure_modes:
+      - API key not yet granted
+      - Rate limiting (1000 rows per call, paginate)
+      - Terms restrict redistribution
+    enabled: false  # flip to true when key received
+
+  ucdp_ged:
+    description: "UCDP Georeferenced Event Dataset — Nigeria subset"
+    access: bulk_download
+    url: "https://ucdp.uu.se/downloads/"
+    filename_pattern: "ged_global_*.csv"
+    update_frequency: annual  # candidate dataset monthly
+    license: "CC BY 4.0"
+    geo_precision: event_point
+    failure_modes:
+      - ~12-month lag to official release
+      - Stricter inclusion criteria than ACLED — undercounts
+    enabled: true
+
+  reliefweb:
+    description: "ReliefWeb / OCHA humanitarian reports — Nigeria"
+    access: rest_api
+    base_url: "https://api.reliefweb.int/v1/reports"
+    key_env_var: null  # public API
+    update_frequency: irregular
+    license: "CC BY"
+    failure_modes:
+      - English-language bias
+      - Sparse coverage for low-profile events
+    enabled: false  # Phase 2
+
+  wfp_food_prices:
+    description: "WFP VAM food price data — Nigerian markets"
+    access: rest_api
+    base_url: "https://api.hungermapdata.org/"
+    update_frequency: monthly
+    license: open
+    failure_modes:
+      - Market coverage drops in active conflict zones
+      - Series breaks when enumerators evacuate
+    enabled: false  # Phase 3
+
+  gdelt:
+    description: "GDELT 2.0 event stream filtered to Nigeria"
+    access: bigquery_or_direct_download
+    update_frequency: 15min
+    license: open
+    failure_modes:
+      - Extremely noisy; English and major-outlet bias
+      - Low Hausa-language capture
+    enabled: false  # Phase 3
+
+alert_thresholds:
+  default_probability_threshold: 0.70
+  email_on_breach: false   # configure in Phase 5
