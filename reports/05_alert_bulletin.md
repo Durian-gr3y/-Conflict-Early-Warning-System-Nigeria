@@ -1,5 +1,5 @@
 # Early Warning Alert Bulletin — Nigeria
-**Issued:** 2026-10-26 11:35 UTC | **Active Alerts:** 6 states
+**Issued:** 2026-11-02 13:54 UTC | **Active Alerts:** 6 states
 > [!WARNING]
 > These alerts represent probabilistic risk forecasts ($P(\text{fatal conflict} \ge 1)$) for humanitarian and security operational planning. All actions must comply with the Do No Digital Harm framework.
 
